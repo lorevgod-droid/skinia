@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skinia Premium — Tu Rutina Personalizada</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.6;
+  }
+
+  nav {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+  }
+
+  .nav-back {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: #ff6b6b; }
+
+  .hero {
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .badge-premium {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6b6b22, #ffa07a22);
+    border: 1px solid #ff6b6b44;
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: #ff6b6b;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: #888;
+    margin-bottom: 1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .urgency {
+    display: inline-block;
+    background: #1a0f0f;
+    border: 1px solid #ff6b6b33;
+    color: #ff6b6b;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+  }
+
+  .levels {
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.8rem;
+    color: #ff6b6b;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .level-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+
+  .level-card {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+
+  .level-card:hover { border-color: #ff6b6b33; }
+  .level-card .emoji { font-size: 2rem; margin-bottom: 0.8rem; }
+  .level-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .level-card p { color: #666; font-size: 0.85rem; }
+
+  .what-you-get {
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .feature {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.2s;
+  }
+
+  .feature:hover { border-color: #ff6b6b33; }
+  .feature .icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .feature h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .feature p { color: #666; font-size: 0.85rem; line-height: 1.6; }
+
+  .pricing-box {
+    max-width: 480px;
+    margin: 0 auto 5rem;
+    background: #111;
+    border: 1px solid #ff6b6b;
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .pricing-top {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.3rem 1.2rem;
+    border-radius: 50px;
+    white-space: nowrap;
+  }
+
+  .price {
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.3rem;
+  }
+
+  .price-period { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
+
+  .price-features {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .price-features li {
+    padding: 0.6rem 0;
+    font-size: 0.95rem;
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .price-features li:last-child { border-bottom: none; }
+  .price-features li::before { content: "✓"; color: #ff6b6b; font-weight: 700; flex-shrink: 0; }
+
+  .btn-get {
+    display: block;
+    width: 100%;
+    padding: 1.1rem;
+    background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    margin-bottom: 1rem;
+  }
+
+  .btn-get:hover { opacity: 0.9; transform: scale(1.02); }
+
+  .guarantee {
+    color: #555;
+    font-size: 0.8rem;
+  }
+
+  .testimonials {
+    padding: 3rem 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .testimonial {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .testimonial-text {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ddd;
+  }
+
+  .testimonial-detail {
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  .stars { color: #ff6b6b; font-size: 0.9rem; margin-bottom: 0.8rem; }
+
+  .faq {
+    padding: 3rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .faq h2 { margin-bottom: 2rem; }
+
+  .faq-item {
+    border-bottom: 1px solid #1a1a1a;
+    padding: 1.5rem 0;
+  }
+
+  .faq-q { font-weight: 600; margin-bottom: 0.7rem; color: #ddd; }
+  .faq-a { color: #666; font-size: 0.95rem; }
+
+  .final-cta {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .final-cta h2 { margin-bottom: 1rem; }
+  .final-cta p { color: #666; margin-bottom: 2rem; }
+
+  .btn-final {
+    display: inline-block;
+    padding: 1.1rem 3rem;
+    background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+    color: white;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .btn-final:hover { opacity: 0.9; transform: scale(1.02); }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid #1a1a1a;
+    color: #444;
+    font-size: 0.85rem;
+  }
+
+  .footer-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff6b6b, #ffa07a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://lorevgod-droid.github.io/skinia" class="logo">Skinia</a>
+  <a href="https://lorevgod-droid.github.io/skinia" class="nav-back">← Volver al inicio</a>
+</nav>
+
+<section class="hero">
+  <div class="badge-premium">✦ SKINIA PREMIUM</div>
+  <h1>Tu rutina exacta para<br><span>eliminar el acné</span></h1>
+  <p class="subtitle">No más prueba y error. Tu plan personalizado basado en el análisis real de tu piel.</p>
+  <div class="urgency">⚠️ Cada día sin rutina correcta aumenta el riesgo de marcas permanentes</div>
+</section>
+
+<section class="levels">
+  <p class="section-label">Diseñado para cada nivel</p>
+  <h2>Tu rutina según tu tipo de acné</h2>
+  <div class="level-cards">
+    <div class="level-card">
+      <div class="emoji">✅</div>
+      <h3>Piel saludable</h3>
+      <p>Rutina preventiva para que el acné nunca aparezca</p>
+    </div>
+    <div class="level-card">
+      <div class="emoji">🟡</div>
+      <h3>Acné leve</h3>
+      <p>Plan de 4 semanas para eliminar puntos y espinillas</p>
+    </div>
+    <div class="level-card">
+      <div class="emoji">🟠</div>
+      <h3>Acné moderado</h3>
+      <p>Rutina específica para reducir inflamación y granos</p>
+    </div>
+    <div class="level-card">
+      <div class="emoji">🔴</div>
+      <h3>Acné severo</h3>
+      <p>Plan intensivo para casos difíciles sin marcas</p>
+    </div>
+  </div>
+</section>
+
+<section class="what-you-get">
+  <p class="section-label">Qué incluye</p>
+  <h2>Todo lo que necesitas en un solo lugar</h2>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="icon">🌅</div>
+      <h3>Rutina mañana y noche</h3>
+      <p>Paso a paso personalizado para tu tipo de acné. Sin productos de más, sin pasos innecesarios.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🛒</div>
+      <h3>Productos exactos</h3>
+      <p>Te decimos exactamente qué comprar según tu nivel de acné y tu presupuesto.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">📸</div>
+      <h3>Seguimiento semanal</h3>
+      <p>Compara fotos semana a semana y ve la evolución real de tu piel.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🥗</div>
+      <h3>Alimentación para tu piel</h3>
+      <p>Qué comer y qué evitar según tu tipo de acné. La dieta afecta más de lo que crees.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">🔬</div>
+      <h3>Explicación de tu acné</h3>
+      <p>Entenderás exactamente qué tipo de acné tienes y por qué aparece en tu piel.</p>
+    </div>
+    <div class="feature">
+      <div class="icon">💬</div>
+      <h3>Soporte por chat</h3>
+      <p>Preguntas sobre tu rutina respondidas en menos de 24 horas.</p>
+    </div>
+  </div>
+</section>
+
+<section style="max-width: 900px; margin: 0 auto; padding: 0 2rem 3rem;">
+  <div class="pricing-box">
+    <div class="pricing-top">Más popular</div>
+    <div class="price">$4.99</div>
+    <div class="price-period">por mes — cancela cuando quieras</div>
+    <ul class="price-features">
+      <li>Rutina personalizada mañana y noche</li>
+      <li>Productos específicos para tu acné</li>
+      <li>Seguimiento semanal con fotos</li>
+      <li>Tips de alimentación para tu piel</li>
+      <li>Explicación detallada de tu acné</li>
+      <li>Soporte por chat incluido</li>
+    </ul>
+    <a href="#" class="btn-get">Obtener Skinia Premium</a>
+    <p class="guarantee">🔒 Pago seguro · Cancela cuando quieras</p>
+  </div>
+</section>
+
+<section class="testimonials">
+  <p class="section-label">Resultados reales</p>
+  <h2>Lo que dicen nuestros usuarios</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"En 3 semanas mi acné moderado bajó a leve. La rutina es simple y los productos no son caros."</p>
+      <p class="testimonial-author">Valentina M.</p>
+      <p class="testimonial-detail">Acné moderado · 3 semanas de uso</p>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Llevaba años probando cosas de TikTok. Skinia me dijo exactamente qué usar y funcionó."</p>
+      <p class="testimonial-author">Sebastián R.</p>
+      <p class="testimonial-detail">Acné leve · 4 semanas de uso</p>
+    </div>
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"El seguimiento semanal me motivó a no abandonar. Ver la evolución en fotos es increíble."</p>
+      <p class="testimonial-author">Camila V.</p>
+      <p class="testimonial-detail">Acné severo · 6 semanas de uso</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <h2>Preguntas frecuentes</h2>
+  <div class="faq-item">
+    <p class="faq-q">¿Cuándo veo resultados?</p>
+    <p class="faq-a">La mayoría ve mejoras visibles en 3 a 4 semanas siguiendo la rutina correctamente.</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">¿Necesito comprar productos caros?</p>
+    <p class="faq-a">No. Te recomendamos productos efectivos para cada presupuesto. Los más caros no siempre son los mejores.</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">¿Puedo cancelar cuando quiera?</p>
+    <p class="faq-a">Sí. Sin compromisos, sin penalizaciones. Cancelas en cualquier momento.</p>
+  </div>
+  <div class="faq-item">
+    <p class="faq-q">¿Funciona para todo tipo de piel?</p>
+    <p class="faq-a">Sí. Las rutinas están personalizadas según el análisis de tu piel específica, no son genéricas.</p>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>Tu piel puede mejorar.<br>Empieza hoy.</h2>
+  <p>Cada día que pasa sin rutina correcta es un día más de acné innecesario.</p>
+  <a href="#" class="btn-final">Obtener Skinia Premium — $4.99/mes</a>
+</section>
+
+<footer>
+  <div class="footer-logo">Skinia</div>
+  <p>© 2025 Skinia. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
